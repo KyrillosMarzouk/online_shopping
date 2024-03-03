@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fresh_store_ui/image_loader.dart';
+import 'package:fresh_store_ui/screens/cart/Cart.dart';
 import 'package:fresh_store_ui/screens/home/home.dart';
 import 'package:fresh_store_ui/screens/profile/profile_screen.dart';
 import 'package:fresh_store_ui/screens/test/test_screen.dart';
 import 'package:fresh_store_ui/size_config.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class TabbarItem {
   final String lightIcon;
@@ -38,7 +40,7 @@ class _FRTabbarScreenState extends State<FRTabbarScreen> {
     const HomeScreen(
       title: '首页0',
     ),
-    const TestScreen(title: 'Cart'),
+    const CartScreen(),
     const TestScreen(title: 'Orders'),
     const TestScreen(title: 'Wallet'),
     const ProfileScreen(),
@@ -56,28 +58,28 @@ class _FRTabbarScreenState extends State<FRTabbarScreen> {
     BottomNavigationBarItem(
       icon: generateIcon('light/Home@2x.png'),
       activeIcon: generateIcon('bold/Home@2x.png'),
-      label: 'Home',
+      label: "Home".tr(),
     ),
     BottomNavigationBarItem(
       icon: generateIcon('light/Bag@2x.png'),
       activeIcon: generateIcon('bold/Bag@2x.png'),
-      label: 'Cart',
+      label: "Cart".tr(),
     ),
     BottomNavigationBarItem(
       icon: generateIcon('light/Buy@2x.png'),
       activeIcon: generateIcon('bold/Buy@2x.png'),
-      label: 'Orders',
+      label: "Orders".tr(),
     ),
-    BottomNavigationBarItem(
-      icon: generateIcon('light/Wallet@2x.png'),
-      activeIcon: generateIcon('bold/Wallet@2x.png'),
-      label: 'Wallet',
-    ),
-    BottomNavigationBarItem(
-      icon: generateIcon('light/Profile@2x.png'),
-      activeIcon: generateIcon('bold/Profile@2x.png'),
-      label: 'Profile',
-    ),
+    // BottomNavigationBarItem(
+    //   icon: generateIcon('light/Wallet@2x.png'),
+    //   activeIcon: generateIcon('bold/Wallet@2x.png'),
+    //   label: 'Wallet',
+    // ),
+    // BottomNavigationBarItem(
+    //   icon: generateIcon('light/Profile@2x.png'),
+    //   activeIcon: generateIcon('bold/Profile@2x.png'),
+    //   label: 'Profile',
+    // ),
   ];
 
   @override

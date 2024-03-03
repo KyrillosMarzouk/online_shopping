@@ -38,6 +38,8 @@ class _SpecialOffersState extends State<SpecialOffers> {
               borderRadius: BorderRadius.all(Radius.circular(MediaQuery.of(context).size.width * 0.1)),
             ),
             child: Card(
+              color: Colors.white,
+              surfaceTintColor: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(MediaQuery.of(context).size.width * 0.08),
               ),

@@ -28,6 +28,8 @@ class ProductCard extends StatelessWidget {
               color: Colors.white,
             ),
             child: Card(
+              color: Colors.white,
+              surfaceTintColor: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(MediaQuery.of(context).size.width * 0.05),
               ),

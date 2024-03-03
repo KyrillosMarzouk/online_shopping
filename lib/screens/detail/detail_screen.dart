@@ -1,6 +1,10 @@
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
+import 'package:fresh_store_ui/constants.dart';
+import 'package:fresh_store_ui/model/Product.dart';
+import 'package:fresh_store_ui/model/order_item.dart';
 import 'package:fresh_store_ui/size_config.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ShopDetailScreen extends StatefulWidget {
   const ShopDetailScreen({super.key});
@@ -12,11 +16,16 @@ class ShopDetailScreen extends StatefulWidget {
 }
 
 class _ShopDetailScreenState extends State<ShopDetailScreen> {
-  int _quantity = 0;
+  int _quantity = 1;
   bool _iscollected = false;
+  double totalPrice = 0;
+  Product? product = ConstantsModel.singleProduct;
+  final quantityController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    totalPrice = _quantity * product!.price;
+    quantityController.text = _quantity.toString();
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -27,15 +36,18 @@ class _ShopDetailScreenState extends State<ShopDetailScreen> {
                   pinned: true,
                   expandedHeight: getProportionateScreenHeight(428),
                   leading: IconButton(
-                    icon: Image.asset('assets/icons/back@2x.png', scale: 2),
+                    icon: Icon(Icons.arrow_back),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white
+                    ),
                     onPressed: () => Navigator.pop(context),
                   ),
                   flexibleSpace: FlexibleSpaceBar(
                     background: Container(
                       color: const Color(0xFFeeeeee),
                       child: Image.asset(
-                        'assets/icons/products/detail_sofa.png',
-                        fit: BoxFit.none,
+                        'assets/images/' + product!.image,
+                        fit: BoxFit.fill,
                       ),
                     ),
                   ),
@@ -53,7 +65,7 @@ class _ShopDetailScreenState extends State<ShopDetailScreen> {
                         ..._buildDescription(),
                         const SizedBox(height: 24),
                         _buildQuantity(),
-                        const SizedBox(height: 115),
+                        SizedBox(height: MediaQuery.of(context).size.height * 0.2),
                       ],
                     ),
                   ),
@@ -72,10 +84,13 @@ class _ShopDetailScreenState extends State<ShopDetailScreen> {
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const FittedBox(
-            child: Text(
-              'Mid Century Sofa',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.65,
+            child: FittedBox(
+              child: Text(
+                product!.title,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32),
+              ),
             ),
           ),
           IconButton(
@@ -85,29 +100,29 @@ class _ShopDetailScreenState extends State<ShopDetailScreen> {
           ),
         ],
       ),
-      const SizedBox(height: 12),
-      Row(
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(6)),
-              color: Color(0xFFeeeeee),
-            ),
-            child: const Text(
-              '9,742 sold',
-              style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
-            ),
-          ),
-          const SizedBox(width: 16),
-          Image.asset('assets/icons/start@2x.png', height: 20, width: 20),
-          const SizedBox(width: 8),
-          const Text(
-            '4.8 (6,573 reviews)',
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-          ),
-        ],
-      ),
+      // const SizedBox(height: 12),
+      // Row(
+      //   children: [
+      //     Container(
+      //       padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+      //       decoration: const BoxDecoration(
+      //         borderRadius: BorderRadius.all(Radius.circular(6)),
+      //         color: Color(0xFFeeeeee),
+      //       ),
+      //       child: const Text(
+      //         '9,742 sold',
+      //         style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
+      //       ),
+      //     ),
+      //     const SizedBox(width: 16),
+      //     Image.asset('assets/icons/start@2x.png', height: 20, width: 20),
+      //     const SizedBox(width: 8),
+      //     const Text(
+      //       '4.8 (6,573 reviews)',
+      //       style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+      //     ),
+      //   ],
+      // ),
     ];
   }
 
@@ -117,10 +132,18 @@ class _ShopDetailScreenState extends State<ShopDetailScreen> {
 
   List<Widget> _buildDescription() {
     return [
-      const Text('Description', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+      Text("UOM".tr(), style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
       const SizedBox(height: 8),
-      const ExpandableText(
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit ametLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit ametLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit ametLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit ametLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit ametLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit ametLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit ametLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit ametLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit ametLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit ametLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit ametLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit ametLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit ametLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit ametLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et Lorem ipsum dolor sit amet',
+      ExpandableText(
+        product!.uom,
+        expandText: 'view more',
+        collapseText: 'view less',
+        linkStyle: TextStyle(color: Color(0xFF424242), fontWeight: FontWeight.bold),
+      ),
+      Text("UOM price".tr(), style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+      const SizedBox(height: 8),
+      ExpandableText(
+        product!.price.toString() + " EGP".tr(),
         expandText: 'view more',
         collapseText: 'view less',
         linkStyle: TextStyle(color: Color(0xFF424242), fontWeight: FontWeight.bold),
@@ -131,7 +154,7 @@ class _ShopDetailScreenState extends State<ShopDetailScreen> {
   Widget _buildQuantity() {
     return Row(
       children: [
-        const Text('Quantity', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+        Text("Quantity".tr(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
         const SizedBox(width: 20),
         Container(
           decoration: const BoxDecoration(
@@ -146,16 +169,48 @@ class _ShopDetailScreenState extends State<ShopDetailScreen> {
                 InkWell(
                   child: Image.asset('assets/icons/detail/minus@2x.png', scale: 2),
                   onTap: () {
-                    if (_quantity <= 0) return;
+                    if (_quantity <= 1) return;
                     setState(() => _quantity -= 1);
                   },
                 ),
                 const SizedBox(width: 20),
-                Text('$_quantity',
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.3,
+                  // height: MediaQuery.of(context).size.height * 0.08,
+                  child: TextField(
+                      decoration: new InputDecoration(
+                        border: InputBorder.none,
+                        focusedBorder: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                        errorBorder: InputBorder.none,
+                        disabledBorder: InputBorder.none,),
+                    keyboardType: TextInputType.number,
+                    controller: quantityController,
+                    maxLength: 3,
+                    textAlign: TextAlign.center,
                     style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    )),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                    onChanged: (value){
+                        if(value == "0" || value == ""){
+                          setState(() {
+                            _quantity = 1;
+                          });
+                        }
+                        else{
+                          setState(() {
+                            _quantity = int.parse(value);
+                          });
+                        }
+                    },
+                  ),
+                ),
+                // Text('$_quantity',
+                //     style: const TextStyle(
+                //       fontWeight: FontWeight.bold,
+                //       fontSize: 18,
+                //     )),
                 const SizedBox(width: 20),
                 InkWell(
                   child: Image.asset('assets/icons/detail/plus@2x.png', scale: 2),
@@ -189,14 +244,17 @@ class _ShopDetailScreenState extends State<ShopDetailScreen> {
             child: InkWell(
               borderRadius: const BorderRadius.all(Radius.circular(29)),
               // splashColor: const Color(0xFFEEEEEE),
-              onTap: () {},
+              onTap: () {
+                ConstantsModel.cart.add(OrderItem(ConstantsModel.singleProduct!, _quantity));
+                showSuccessDialog(context);
+              },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset('assets/icons/detail/bag@2x.png', scale: 2),
                   const SizedBox(width: 16),
-                  const Text(
-                    'Add to Cart',
+                  Text(
+                    "Add to Cart".tr(),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
@@ -225,10 +283,11 @@ class _ShopDetailScreenState extends State<ShopDetailScreen> {
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text('Total price', style: TextStyle(color: Color(0xFF757575), fontSize: 12)),
+                  children: [
+                    Text("Total price".tr(), style: TextStyle(color: Color(0xFF757575), fontSize: 12)),
                     SizedBox(height: 6),
-                    Text('\$280.00', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+                    Text(totalPrice.toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+                    Text(" EGP".tr(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
                   ],
                 ),
                 buildAddCard()
@@ -238,6 +297,34 @@ class _ShopDetailScreenState extends State<ShopDetailScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  Future<void> showSuccessDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Success").tr(),
+          content:  SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text("Item added to cart successfully").tr(),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child:  Text("Ok").tr(),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
@@ -286,3 +373,5 @@ class _ShopDetailScreenState extends State<ShopDetailScreen> {
 //     );
 //   }
 // }
+
+

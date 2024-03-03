@@ -88,7 +88,12 @@ class _HomeScreenState extends State<HomeScreen> {
     final data = datas[index % datas.length];
     return ProductCard(
       data: data,
-      ontap: (data) => Navigator.pushNamed(context, ShopDetailScreen.route()),
+      ontap: (data) {
+        {
+          ConstantsModel.singleProduct = data;
+          Navigator.pushNamed(context, ShopDetailScreen.route());
+        }
+      }
     );
   }
 

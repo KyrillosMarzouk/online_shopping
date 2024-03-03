@@ -1,5 +1,6 @@
 
 import 'package:fresh_store_ui/model/Product.dart';
+import 'package:fresh_store_ui/model/order_item.dart';
 import 'package:fresh_store_ui/model/special_offer.dart';
 
 import 'model/category.dart';
@@ -7,6 +8,8 @@ import 'model/category.dart';
 const String kIconPath = 'assets/icons';
 const String kImagesPath = 'assets/images';
 class ConstantsModel{
+  static List<OrderItem> cart = [];
+  static Product? singleProduct = null;
   static List<Category> categories = [
     Category(0, "الكل"),
     Category(1, "الارز"),
