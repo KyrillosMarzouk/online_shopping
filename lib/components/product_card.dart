@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fresh_store_ui/model/popular.dart';
 
 import '../model/Product.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 typedef ProductCardOnTaped = void Function(Product data);
 
@@ -63,7 +64,7 @@ class ProductCard extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-                _buildSoldPoint(4.5, 6937),
+                _buildSoldPoint(4.5, data.uom, context),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.01),
                 Column(
                   children: [
@@ -73,7 +74,7 @@ class ProductCard extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              '\$${data.price.toStringAsFixed(2)}',
+                              '${data.price.toStringAsFixed(2)}' + " EGP".tr(),
                               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF212121)),
                             ),
                           ],
@@ -95,38 +96,45 @@ class ProductCard extends StatelessWidget {
     );
   }
 
-  Widget _buildSoldPoint(double star, int sold) {
+  Widget _buildSoldPoint(double star, String sold, BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.asset('assets/icons/start@2x.png', width: 20, height: 20),
-        const SizedBox(width: 8),
-        Text(
-          '$star',
-          style: const TextStyle(
-            color: Color(0xFF616161),
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        const SizedBox(width: 8),
-        const Text(
-          '|',
-          style: TextStyle(fontWeight: FontWeight.w500, color: Color(0xFF616161), fontSize: 14),
-        ),
-        const SizedBox(width: 8),
+        // Image.asset('assets/icons/start@2x.png', width: 20, height: 20),
+        // const SizedBox(width: 8),
+        // Text(
+        //   '$star',
+        //   style: const TextStyle(
+        //     color: Color(0xFF616161),
+        //     fontSize: 14,
+        //     fontWeight: FontWeight.w500,
+        //   ),
+        // ),
+        // const SizedBox(width: 8),
+        // const Text(
+        //   '|',
+        //   style: TextStyle(fontWeight: FontWeight.w500, color: Color(0xFF616161), fontSize: 14),
+        // ),
+        // const SizedBox(width: 8),
         Container(
+          width: MediaQuery.of(context).size.width * 0.3,
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(6)),
             color: const Color(0xFF101010).withOpacity(0.08),
           ),
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-          child: Text(
-            '$sold sold',
-            style: const TextStyle(
-              color: Color(0xFF35383F),
-              fontWeight: FontWeight.w500,
-              fontSize: 10,
-            ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                '$sold',
+                style: const TextStyle(
+                  color: Color(0xFF35383F),
+                  fontWeight: FontWeight.w500,
+                  fontSize: 12,
+                ),
+              ),
+            ],
           ),
         ),
       ],

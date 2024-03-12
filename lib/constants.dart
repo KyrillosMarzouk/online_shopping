@@ -3,6 +3,7 @@ import 'package:fresh_store_ui/model/Product.dart';
 import 'package:fresh_store_ui/model/order_item.dart';
 import 'package:fresh_store_ui/model/special_offer.dart';
 
+import 'model/Order.dart';
 import 'model/category.dart';
 
 const String kIconPath = 'assets/icons';
@@ -10,15 +11,86 @@ const String kImagesPath = 'assets/images';
 class ConstantsModel{
   static List<OrderItem> cart = [];
   static Product? singleProduct = null;
+  static Order? singleOrder = null;
+  static List<Order> orders = [
+    Order(
+      "1",
+      "قيد التنفيذ",
+      [
+        OrderItem(
+          Product(
+              5,
+              "01-02-01-006.jpg",
+              "ارز المزرعة 1ك كرتون",
+              250,
+              null,
+              "باكت * 10",
+              1
+          ),
+          5
+        ),
+        OrderItem(
+            Product(
+                23,
+                "01-02-05-001.jpg",
+                "زيت سندة 550 مللي",
+                750,
+                null,
+                "كرتونة * 12",
+                5
+            ),
+            1
+        ),
+      ]
+    ),
+    Order(
+        "2",
+        "جار التوصيل",
+        [
+          OrderItem(
+              Product(
+                  1,
+                  "01-02-01-001.jpg",
+                  "ارز احمر 1ك حبوبة",
+                  280,
+                  null,
+                  "باكت * 10",
+                  1
+              ),
+              1
+          ),
+
+        ]
+    ),
+    Order(
+        "3",
+        "تم التوصيل",
+        [
+          OrderItem(
+              Product(
+                  14,
+                  "01-02-02-004.jpeg",
+                  "سكرسندة 950 جم",
+                  280,
+                  null,
+                  "باكت * 10",
+                  2
+              ),
+              10
+          ),
+
+        ]
+    ),
+  ];
   static List<Category> categories = [
-    Category(0, "الكل"),
-    Category(1, "الارز"),
-    Category(2, "السكر"),
-    Category(3, "الدقيق"),
-    Category(4, "البقوليات"),
-    Category(5, "الزيت"),
-    Category(6, "الخل"),
-    Category(7, "المساحيق الجافة"),
+    Category(0, "الكل", "assets/images/products.png"),
+    Category(1, "الارز", "assets/images/rice.png"),
+    Category(2, "السكر", "assets/images/sugar.png"),
+    Category(3, "الدقيق", "assets/images/flour.png"),
+    Category(4, "البقوليات", "assets/images/beans.png"),
+    Category(5, "الزيت", "assets/images/oil.png"),
+    Category(6, "الخل", "assets/images/vin.png"),
+    Category(7, "المساحيق الجافة", "assets/images/powder.png"),
   ];
 
   static List<SpecialOffer> specialOffers = [

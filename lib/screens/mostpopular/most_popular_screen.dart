@@ -107,7 +107,7 @@ class _MostPopularScreenState extends State<MostPopularScreen> {
 
   Widget _buildBody() {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.05,
+      height: MediaQuery.of(context).size.height * 0.15,
       child: ListView.separated(
         itemCount: categories.length,
         scrollDirection: Axis.horizontal,
@@ -122,29 +122,36 @@ class _MostPopularScreenState extends State<MostPopularScreen> {
   Widget _buildItem(BuildContext context, int index) {
     final data = categories[index];
     final isActive = selectedIndex == index;
-    var radius = BorderRadius.all(Radius.circular(MediaQuery.of(context).size.width * 0.05));
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: radius,
-        border: Border.all(color: const Color(0xFF101010), width: MediaQuery.of(context).size.width * 0.002),
-        color: isActive ? const Color(0xFF101010) : const Color(0xFFFFFFFF),
-      ),
-      alignment: Alignment.center,
-      child: InkWell(
-        borderRadius: radius,
-        onTap: () => _onTapItem(index),
-        child: Padding(
-          padding:  EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.01, horizontal: MediaQuery.of(context).size.width * 0.05),
-          child: Text(
-            data.title,
-            style: TextStyle(
-              color: isActive ? const Color(0xFFFFFFFF) : const Color(0xFF101010),
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
+    var radius = BorderRadius.all(Radius.circular(MediaQuery.of(context).size.width * 0.1));
+    return Column(
+      children: [
+        Container(
+          height: MediaQuery.of(context).size.width * 0.2,
+          width: MediaQuery.of(context).size.width * 0.2,
+          decoration: BoxDecoration(
+            borderRadius: radius,
+            border: Border.all(color: const Color(0xFF101010), width: MediaQuery.of(context).size.width * 0.002),
+            color: isActive ? Colors.green.withOpacity(0.5) : const Color(0xFFFFFFFF),
+          ),
+          alignment: Alignment.center,
+          child: InkWell(
+            borderRadius: radius,
+            onTap: () => _onTapItem(index),
+            child: Padding(
+              padding:  EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.01, horizontal: MediaQuery.of(context).size.width * 0.05),
+              child: Image.asset(categories[index].icon),
             ),
           ),
         ),
-      ),
+        Text(
+          data.title,
+          style: TextStyle(
+            color: const Color(0xFF101010),
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
     );
   }
 

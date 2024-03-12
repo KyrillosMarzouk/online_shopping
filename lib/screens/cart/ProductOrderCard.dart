@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:fresh_store_ui/constants.dart';
 import 'package:fresh_store_ui/model/order_item.dart';
+import 'package:fresh_store_ui/screens/cart/Cart.dart';
+import 'package:fresh_store_ui/screens/home/hearder.dart';
 import 'package:lottie/lottie.dart';
 import 'package:go_router/go_router.dart';
 
 class ProductOrderCard extends StatefulWidget {
   OrderItem item;
-  ProductOrderCard({super.key, required this.item});
+  final VoidCallback callback;
+  ProductOrderCard({super.key, required this.item, required this.callback});
 
   @override
   State<ProductOrderCard> createState() => _StampOrderCardState();
@@ -40,13 +44,42 @@ class _StampOrderCardState extends State<ProductOrderCard> {
                                   margin: EdgeInsets.all( MediaQuery.of(context).size.width * 0.02),
                                   child: Text(widget.item!.product.title!, textAlign: TextAlign.center,)
                               ),
-                              Container(
-                                  margin: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.02),
-                                  child: Row(
-                                    children: [
-                                      Text("Ordered qty : ".tr() + widget.item.qty!.toString(),  overflow: TextOverflow.ellipsis,maxLines: 2,),
-                                    ],
-                                  )
+                              Row(
+                                children: [
+                                  InkWell(
+                                    child: Image.asset('assets/icons/detail/minus@2x.png', scale: 2),
+                                    onTap: () {
+                                      if (widget.item.qty <= 1) return;
+                                      setState(() => widget.item.qty -= 1);
+                                    },
+                                  ),
+                                  const SizedBox(width: 20),
+
+                                  Text(widget.item.qty.toString(),
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                      )),
+                                  const SizedBox(width: 20),
+                                  InkWell(
+                                    child: Image.asset('assets/icons/detail/plus@2x.png', scale: 2),
+                                    onTap: () {
+                                      for(var i in ConstantsModel.cart){
+                                        if(i == widget.item){
+                                          setState(() {
+                                            i.qty += 1;
+                                            widget.callback;
+                                          });
+
+
+                                          // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeAppBar()));
+                                        }
+                                      }
+
+
+                                    }
+                                  ),
+                                ],
                               ),
                             ],
                           ),

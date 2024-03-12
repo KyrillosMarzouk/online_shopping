@@ -35,12 +35,18 @@ class _ShopDetailScreenState extends State<ShopDetailScreen> {
                 SliverAppBar(
                   pinned: true,
                   expandedHeight: getProportionateScreenHeight(428),
-                  leading: IconButton(
-                    icon: Icon(Icons.arrow_back),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white
+                  leading: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(MediaQuery.of(context).size.width * 0.05)),
                     ),
-                    onPressed: () => Navigator.pop(context),
+                    child: IconButton(
+                      icon: Icon(Icons.arrow_back),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white
+                      ),
+                      onPressed: () => Navigator.pop(context),
+                    ),
                   ),
                   flexibleSpace: FlexibleSpaceBar(
                     background: Container(
@@ -246,7 +252,8 @@ class _ShopDetailScreenState extends State<ShopDetailScreen> {
               // splashColor: const Color(0xFFEEEEEE),
               onTap: () {
                 ConstantsModel.cart.add(OrderItem(ConstantsModel.singleProduct!, _quantity));
-                showSuccessDialog(context);
+                // showSuccessDialog(context);
+                Navigator.of(context).pop();
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

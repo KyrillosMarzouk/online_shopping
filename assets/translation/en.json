@@ -27,5 +27,10 @@
   "Order more" : "Order more",
   "Confirm order" : "Confirm order",
   "Order confirmed successfully" : "Order confirmed successfully",
+  "Order status" : "Order status",
+  "Re order" : "Re order",
+  "Order Status : " : "Order Status : ",
+  "Order Date : " : "Order Date : ",
+  "Order Id : " : "Order Id : "
 
 }

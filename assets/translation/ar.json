@@ -26,5 +26,10 @@
   "Total amount" : "المبلغ الاجمالي",
   "Order more" : "طلب المزيد",
   "Confirm order" : "تنفيذ الطلب",
-  "Order confirmed successfully" : "تم تنفيذ الطلب بنجاح"
+  "Order confirmed successfully" : "تم تنفيذ الطلب بنجاح",
+  "Order status" : "حالة الطلب",
+  "Re order" : "اعادة الطلب",
+  "Order Status : " : "حالة الطلب : ",
+  "Order Date : " : "تاريخ الطلب : ",
+  "Order Id : " : "رقم الطلب : "
 }

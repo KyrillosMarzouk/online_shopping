@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:fresh_store_ui/image_loader.dart';
 import 'package:fresh_store_ui/screens/cart/Cart.dart';
 import 'package:fresh_store_ui/screens/home/home.dart';
+import 'package:fresh_store_ui/screens/orders/Orders.dart';
 import 'package:fresh_store_ui/screens/profile/profile_screen.dart';
 import 'package:fresh_store_ui/screens/test/test_screen.dart';
 import 'package:fresh_store_ui/size_config.dart';
@@ -40,8 +41,8 @@ class _FRTabbarScreenState extends State<FRTabbarScreen> {
     const HomeScreen(
       title: '首页0',
     ),
-    const CartScreen(),
-    const TestScreen(title: 'Orders'),
+    CartScreen(),
+    OrdersScreen(),
     const TestScreen(title: 'Wallet'),
     const ProfileScreen(),
   ];

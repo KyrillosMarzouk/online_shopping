@@ -38,6 +38,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   expandable_text: ^2.3.0
+  firebase_core: ^2.24.2
 
 dev_dependencies:
   flutter_test:
@@ -97,6 +98,14 @@ flutter:
     - assets/icons/detail/
     - assets/images/logo.png
     - assets/images/
+    - assets/images/rice.png
+    - assets/images/products.png
+    - assets/images/sugar.png
+    - assets/images/flour.png
+    - assets/images/beans.png
+    - assets/images/oil.png
+    - assets/images/vin.png
+    - assets/images/powder.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
